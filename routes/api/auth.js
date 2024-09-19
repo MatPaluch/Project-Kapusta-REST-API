@@ -1,10 +1,9 @@
 const express = require("express");
-
 const router = express.Router();
 
-router.post("/register", async (req, res, next) => {
-  res.json({ message: "template message" });
-});
+const authControllers = require("../controllers/auth");
+
+router.post("/register", authControllers.register);
 
 router.post("/login", async (req, res, next) => {
   res.json({ message: "template message" });

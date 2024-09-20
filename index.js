@@ -9,10 +9,12 @@ const connection = mongoose.connect(URI_DB);
 connection
   .then(() => {
     console.log("Database connected successfully!");
-
-    app.listen(8000, () => {
+    app.get("/", async (req, res) => {
+      res.json({ message: "NICE!" });
+    });
+    app.listen(3000, () => {
       console.log("Server is running.");
-      console.log("Use our API on port: http://localhost:8000");
+      console.log("Use our API on port: http://localhost:3000");
     });
   })
   .catch((error) => {

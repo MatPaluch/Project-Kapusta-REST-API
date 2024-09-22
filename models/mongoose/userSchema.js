@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
-    username: { type: String },
+    username: { type: String, required: [true, "Username is required"] },
     email: { type: String, required: [true, "Email is required"] },
     password: { type: String, required: [true, "Password is required"] },
     balance: { type: Number, default: 0 },
@@ -19,12 +19,6 @@ const userSchema = new Schema(
     timestamps: true,
   }
 );
-
-userSchema.methods.setUsername = function (email) {
-  const atPosition = email.indexOf("@");
-  const cutedEmail = email.slice(0, atPosition);
-  this.username = cutedEmail;
-};
 
 userSchema.methods.setPassword = async function (password) {
   this.password = await bCrypt.hash(password, await bCrypt.genSalt(12));

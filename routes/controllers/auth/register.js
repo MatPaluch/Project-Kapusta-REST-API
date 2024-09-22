@@ -1,6 +1,6 @@
-const MongooseHelpers = require("../../models/helpers/auth");
+const MongooseHelpers = require("../../../models/helpers/auth");
 const gravatar = require("gravatar");
-const validRegisterReq = require("../helpers/validRegisterReq");
+const validRegisterReq = require("../../helpers/validRegisterReq");
 
 require("dotenv").config();
 
@@ -14,7 +14,7 @@ const register = async (req, res, next) => {
         message: validBody.replace(/"/g, "'"),
       });
     }
-    const { email, password } = req.body;
+    const { email, password, username } = req.body;
 
     const user = await MongooseHelpers.findUserByEmail(email);
 
@@ -31,11 +31,12 @@ const register = async (req, res, next) => {
       true
     );
     const newUser = await MongooseHelpers.createUser({
+      username,
       email,
       password,
       avatarURL,
     });
-    newUser.setUsername(email);
+
     await newUser.setPassword(password);
     await newUser.save();
 
@@ -55,4 +56,4 @@ const register = async (req, res, next) => {
   }
 };
 
-module.exports = { register };
+module.exports = register;

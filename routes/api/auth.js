@@ -1,17 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-const authControllers = require("../controllers/auth");
+const controllersAuthRegister = require("../controllers/auth/register");
+const controllersAuthLogin = require("../controllers/auth/login");
 
-router.post("/register", authControllers.register);
+router.post("/register", controllersAuthRegister);
 
-router.get("/login", async (req, res, next) => {
-  res.json({ message: "template message" });
-});
-
-router.post("/login", async (req, res, next) => {
-  res.json({ message: "template message" });
-});
+router.post("/login", controllersAuthLogin);
 
 router.post("/logout", async (req, res, next) => {
   res.json({ message: "template message" });

@@ -39,8 +39,6 @@ const login = async (req, res, next) => {
       const payload = {
         id: user._id,
         username: user.username,
-        balance: user.balance,
-        avatarURL: user.avatarURL,
       };
 
       const secret = process.env.SECRET;
@@ -54,6 +52,14 @@ const login = async (req, res, next) => {
         code: 200,
         message: "Successfully logged in.",
         token: token,
+        data: {
+          id: user._id,
+          username: user.username,
+          email: user.email,
+          avatarURL: user.avatarURL,
+          balance: user.balance,
+        },
+        transactions: [],
       });
     }
   } catch (error) {

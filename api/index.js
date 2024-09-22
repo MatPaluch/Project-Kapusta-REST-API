@@ -1,8 +1,27 @@
-const express = require("express");
-const app = express();
+const app = require("./app");
+const mongoose = require("mongoose");
 
-app.get("/", (req, res) => res.send("Express on Vercel YS"));
+require("dotenv").config();
 
-app.listen(3000, () => console.log("Server ready on port 3000."));
+const URI_DB = process.env.DB_HOST;
+const connection = mongoose.connect(URI_DB);
 
-module.exports = app;
+connection
+  .then(() => {
+    console.log("Database connected successfully!");
+
+    app.get("/", async (req, res) => {
+      res.send({ message: "Hello! Everything is working." });
+    });
+
+    app.listen(3000, () => {
+      console.log("Server is running.");
+      console.log("Use our API on port: http://localhost:3000");
+    });
+  })
+  .catch((error) => {
+    console.log(
+      `Something gone wrong with connection with DB. Error:${error.message}`
+    );
+    process.exit(1);
+  });

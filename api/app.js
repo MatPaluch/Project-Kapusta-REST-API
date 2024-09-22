@@ -2,7 +2,7 @@ const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
 
-const authRouter = require("./routes/api/auth.js");
+const authRouter = require("../routes/api/auth.js");
 
 const app = express();
 

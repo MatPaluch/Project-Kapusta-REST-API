@@ -1,6 +1,5 @@
 const Joi = require("joi");
 const schema = Joi.object({
-  username: Joi.string().max(16).required(),
   email: Joi.string().email().max(64).required(),
   password: Joi.string()
     .min(8)

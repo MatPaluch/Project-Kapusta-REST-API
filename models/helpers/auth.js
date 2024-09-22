@@ -6,8 +6,8 @@ const findUserByEmail = async (email) => {
 const findUserById = async (id) => {
   return await User.findById(id);
 };
-const createUser = async ({ email, password, avatarURL }) => {
-  return await new User({ email, password, avatarURL });
+const createUser = async ({ username, email, password, avatarURL }) => {
+  return await new User({ username, email, password, avatarURL });
 };
 
 module.exports = { findUserByEmail, findUserById, createUser };

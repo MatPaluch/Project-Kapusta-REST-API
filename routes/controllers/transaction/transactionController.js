@@ -1,4 +1,4 @@
-const Transaction = require('../../../models/Transaction'); 
+const Transaction = require('../../../models/mongoose/Transaction'); 
 
 const deleteTransaction = async (req, res) => {
     try {

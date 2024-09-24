@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "cross-env NODE_ENV=production node ./api/index.js.js",
+    "start": "cross-env NODE_ENV=production node ./api/index.js",
     "start:dev": "cross-env NODE_ENV=development nodemon ./api/index.js",
     "lint": "eslint **/*.js",
     "lint:fix": "eslint --fix **/*.js"
@@ -20,7 +20,8 @@
     "mongoose": "^8.6.3",
     "morgan": "1.10.0",
     "passport": "^0.7.0",
-    "passport-jwt": "^4.0.1"
+    "passport-jwt": "^4.0.1",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "eslint": "7.19.0",

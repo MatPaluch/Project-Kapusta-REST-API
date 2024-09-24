@@ -3,6 +3,8 @@ const logger = require('morgan');
 const cors = require('cors');
 
 const authRouter = require('../routes/api/auth.js');
+const userRouter = require('../routes/api/user');
+const transactionRouter = require('../routes/api/transaction');
 
 const app = express();
 
@@ -22,6 +24,8 @@ app.get('/favicon.ico', (req, res) => {
 });
 
 app.use('/auth', authRouter);
+app.use('/user', userRouter);
+app.use('/transaction', transactionRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });

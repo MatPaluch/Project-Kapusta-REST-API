@@ -1,13 +1,14 @@
-const bCrypt = require("bcryptjs");
-const mongoose = require("mongoose");
+const bCrypt = require('bcryptjs');
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
-    username: { type: String, required: [true, "Username is required"] },
-    email: { type: String, required: [true, "Email is required"] },
-    password: { type: String, required: [true, "Password is required"] },
+    username: { type: String, required: [true, 'Username is required'] },
+    email: { type: String, required: [true, 'Email is required'] },
+    password: { type: String, required: [true, 'Password is required'] },
     balance: { type: Number, default: 0 },
+    isBalanceSet: { type: Boolean, default: false },
     token: {
       type: String,
       default: null,
@@ -15,7 +16,7 @@ const userSchema = new Schema(
     avatarURL: { type: String },
   },
   {
-    versionKey: "version",
+    versionKey: 'version',
     timestamps: true,
   }
 );
@@ -28,6 +29,6 @@ userSchema.methods.validPassword = async function (password) {
   return await bCrypt.compare(password, this.password);
 };
 
-const User = mongoose.model("user", userSchema);
+const User = mongoose.model('user', userSchema);
 
 module.exports = User;

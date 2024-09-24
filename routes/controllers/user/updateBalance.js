@@ -14,6 +14,7 @@ const updateBalance = async (req, res, next) => {
     }
 
     user.balance = balance;
+    user.isBalanceSet = true;
     await user.save();
 
     return res.status(200).json({
@@ -22,6 +23,7 @@ const updateBalance = async (req, res, next) => {
       message: 'Balance updated successfully',
       data: {
         balance: user.balance,
+        isBalanceSet: user.isBalanceSet,
       },
     });
   } catch (error) {

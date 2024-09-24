@@ -1,4 +1,4 @@
-const Transaction = require('../'); 
+const Transaction = require('../../../models/Transaction'); 
 
 const deleteTransaction = async (req, res) => {
     try {

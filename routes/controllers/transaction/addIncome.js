@@ -5,7 +5,7 @@ const addIncome = async (req, res, next) => {
     const { amount, category, description } = req.body;
     const user = req.user;
 
-    const incomeCategories = ['Salary', 'Add. income'];
+    const incomeCategories = ['Salary', 'Other income'];
 
     if (!amount || amount <= 0) {
       return res.status(400).json({

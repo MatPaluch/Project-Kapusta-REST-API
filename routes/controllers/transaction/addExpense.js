@@ -6,16 +6,17 @@ const addExpense = async (req, res, next) => {
     const user = req.user;
 
     const expenseCategories = [
-      'alcohol',
-      'entertainment',
-      'health',
-      'transport',
-      'housing',
-      'technique',
-      'communal, communication',
-      'sports, hobbies',
-      'education',
-      'other',
+      'Products',
+      'Alcohol',
+      'Entertainment',
+      'Health',
+      'Transport',
+      'Housing',
+      'Technique',
+      'Communal, Communication',
+      'Sports, Hobbies',
+      'Education',
+      'Other',
     ];
 
     if (!amount || amount <= 0) {

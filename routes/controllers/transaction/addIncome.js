@@ -2,24 +2,27 @@ const Transaction = require('../../../models/mongoose/transactionSchema');
 
 const addIncome = async (req, res, next) => {
   try {
-    const { amount, category, description } = req.body;
+    const { amount, category, description, date } = req.body;
     const user = req.user;
 
     const incomeCategories = ['Salary', 'Other income'];
 
     if (!amount || amount <= 0) {
-      return res.status(400).json({
-        status: 'Error',
-        code: 400,
-        message: 'Amount is required and should be a positive number',
-      });
+      return next({ status: 400, message: 'Amount is required and should be a positive number' });
     }
 
     if (!category || !incomeCategories.includes(category)) {
-      return res.status(400).json({
-        status: 'Error',
-        code: 400,
-        message: 'Invalid category provided. Valid categories are "Salary" and "Add. income".',
+      return next({
+        status: 400,
+        message: 'Invalid category provided. Valid categories are "Salary" and "Other income".',
+      });
+    }
+
+    const transactionDate = date ? new Date(date) : null;
+    if (!transactionDate || isNaN(transactionDate.getTime())) {
+      return next({
+        status: 400,
+        message: 'Invalid or missing date. Please provide a valid date.',
       });
     }
 
@@ -29,6 +32,7 @@ const addIncome = async (req, res, next) => {
       category,
       description,
       type: 'income',
+      createdAt: transactionDate,
     });
 
     await newIncome.save();
@@ -41,7 +45,7 @@ const addIncome = async (req, res, next) => {
         _id: newIncome._id,
         description: newIncome.description,
         amount: newIncome.amount,
-        date: newIncome.createdAt.toISOString().split('T')[0],
+        date: transactionDate.toISOString().split('T')[0],
         category: newIncome.category,
       },
     };

@@ -5,7 +5,7 @@ const getUserData = async (req, res, next) => {
   try {
     const user = req.user;
 
-    const transactions = await Transaction.find({ userId: user._id });
+    const transactions = await Transaction.find({ userId: user._id }).sort({ createdAt: -1 });
 
     const formattedTransactions = transactions.map(transaction => ({
       _id: transaction._id,

@@ -1,4 +1,4 @@
-const Transaction = require('../../../models/mongoose/transactionSchemas');
+const Transaction = require('../../../models/mongoose/transactionSchema');
 
 const getExpense = async (req, res) => {
   try {

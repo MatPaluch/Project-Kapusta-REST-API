@@ -1,37 +1,77 @@
 const Transaction = require('../../../models/mongoose/transactionSchema');
 
-const getExpense = async (req, res) => {
+const getExpenseStatement = async (req, res, next) => {
   try {
-    //  Tutaj trzeba to poprawić a najlepiej usunąć i skopiować z getIncome ----------------------
+    const user = req.user;
+    const currentYear = new Date().getFullYear();
 
-    // const currentYear = new Date().getFullYear();
-    // const expenses = await Transaction.aggregate([
-    //   {
-    //     $match: {
-    //       type: 'expense',
-    //       date: {
-    //         $gte: new Date(`${currentYear}-01-01`),
-    //         $lt: new Date(`${currentYear + 1}-01-01`),
-    //       },
-    //     },
-    //   },
-    //   {
-    //     $group: {
-    //       _id: { $month: '$date' },
-    //       totalExpenses: { $sum: '$amount' },
-    //     },
-    //   },
-    //   {
-    //     $sort: { _id: 1 },
-    //   },
-    // ]);
+    const expenses = await Transaction.find({
+      userId: user._id,
+      type: 'expense',
+      createdAt: {
+        $gte: new Date(`${currentYear}-01-01T00:00:00.000Z`),
+        $lte: new Date(`${currentYear}-12-31T23:59:59.999Z`),
+      },
+    }).sort({ createdAt: 1 });
 
-    //  Tutaj trzeba to poprawić a najlepiej usunąć i skopiować z getIncome ----------------------
+    const formattedExpenses = expenses.map(expense => ({
+      _id: expense._id,
+      description: expense.description,
+      amount: Math.abs(expense.amount),
+      date: expense.createdAt.toISOString().split('T')[0],
+      category: expense.category,
+    }));
 
-    return res.status(200).json({ data: expenses });
+    const monthStats = {
+      January: 'N/A',
+      February: 'N/A',
+      March: 'N/A',
+      April: 'N/A',
+      May: 'N/A',
+      June: 'N/A',
+      July: 'N/A',
+      August: 'N/A',
+      September: 'N/A',
+      October: 'N/A',
+      November: 'N/A',
+      December: 'N/A',
+    };
+
+    const monthNames = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+
+    expenses.forEach(expense => {
+      const monthIndex = expense.createdAt.getMonth();
+      const monthName = monthNames[monthIndex];
+
+      if (monthStats[monthName] === 'N/A') {
+        monthStats[monthName] = 0;
+      }
+
+      monthStats[monthName] += Math.abs(expense.amount);
+    });
+
+    const response = {
+      expenses: formattedExpenses,
+      monthStats,
+    };
+
+    return res.status(200).json(response);
   } catch (error) {
-    return res.status(500).json({ message: 'Server error', error });
+    next(error);
   }
 };
 
-module.exports = getExpense;
+module.exports = getExpenseStatement;

@@ -25,7 +25,7 @@ const register = async (req, res, next) => {
         message: 'Email in use',
       });
     }
-    const avatarURL = gravatar.url(email, { s: '300', d: 'wavatar', r: 'x' }, true);
+    const avatarURL = gravatar.url(email, { s: '300', d: 'wavatar' }, true);
     const newUser = await MongooseHelpers.createUser({
       username,
       email,

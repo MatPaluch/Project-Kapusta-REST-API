@@ -2,7 +2,7 @@ const Transaction = require('../../../models/mongoose/transactionSchema');
 
 const getExpense = async (req, res) => {
   try {
-    //  Tutaj trzeba to poprawić  ----------------------
+    //  Tutaj trzeba to poprawić a najlepiej usunąć i skopiować z getIncome ----------------------
 
     // const currentYear = new Date().getFullYear();
     // const expenses = await Transaction.aggregate([
@@ -26,7 +26,7 @@ const getExpense = async (req, res) => {
     //   },
     // ]);
 
-    //  Tutaj trzeba to poprawić  ----------------------
+    //  Tutaj trzeba to poprawić a najlepiej usunąć i skopiować z getIncome ----------------------
 
     return res.status(200).json({ data: expenses });
   } catch (error) {

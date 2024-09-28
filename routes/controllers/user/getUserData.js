@@ -16,6 +16,7 @@ const getUserData = async (req, res, next) => {
     }));
 
     const response = {
+      avatarURL: user.avatarURL,
       email: user.email,
       balance: user.balance,
       isBalanceSet: user.isBalanceSet,

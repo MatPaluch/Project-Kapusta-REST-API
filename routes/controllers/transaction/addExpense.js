@@ -44,7 +44,7 @@ const addExpense = async (req, res, next) => {
       category,
       description,
       type: 'expense',
-      createdAt: transactionDate,
+      date: transactionDate,
     });
 
     await newExpense.save();

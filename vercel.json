@@ -1,14 +1,17 @@
 {
   "version": 2,
-  "rewrites": [{ "source": "/(.*)", "destination": "/api" }],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api-docs/(swagger-ui-bundle\\.js|swagger-ui-standalone-preset\\.js|swagger-ui\\.css)",
-      "dest": "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/$1"
+      "source": "/api-docs/(swagger-ui-bundle\\.js|swagger-ui-standalone-preset\\.js|swagger-ui\\.css)",
+      "destination": "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/$1"
     },
     {
-      "src": "/api-docs",
-      "dest": "/api"
+      "source": "/api-docs",
+      "destination": "/api"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/api"
     }
   ]
 }

@@ -1,8 +1,6 @@
 const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
-const path = require('path');
-const YAML = require('yamljs');
 
 const authRouter = require('../routes/api/auth.js');
 const userRouter = require('../routes/api/user');
@@ -32,6 +30,7 @@ app.use('/auth', authRouter);
 app.use('/user', userRouter);
 app.use('/transaction', transactionRouter);
 
+const path = require('path');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 
@@ -59,11 +58,12 @@ const options = {
       },
     },
   },
-  apis: [path.join(__dirname, '../routes/api/**/*.js')],
+  apis: [path.join(__dirname, '../routes/api/*.js')],
   // Ścieżka do plików zawierających endpointy
 };
 
 const specs = swaggerJsdoc(options);
+
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use((req, res) => {

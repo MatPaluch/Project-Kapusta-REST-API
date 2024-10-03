@@ -63,6 +63,8 @@ const options = {
 const specs = swaggerJsdoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
+console.log(JSON.stringify(specs, null, 2));
+
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });
 });

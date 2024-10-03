@@ -58,11 +58,12 @@ const options = {
       },
     },
   },
-  apis: [path.join(__dirname, '../routes/api/swagger/*.js')], // Ścieżka do plików zawierających endpointy
+  apis: ['./routes/api/**/*.js'], // Ścieżka do plików zawierających endpointy
 };
 
 const specs = swaggerJsdoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+console.log(JSON.stringify(specs, null, 2));
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });

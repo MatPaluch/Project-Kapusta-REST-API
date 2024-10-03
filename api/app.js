@@ -2,6 +2,7 @@ const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
 const path = require('path');
+const YAML = require('yamljs');
 
 const authRouter = require('../routes/api/auth.js');
 const userRouter = require('../routes/api/user');
@@ -58,7 +59,7 @@ const options = {
       },
     },
   },
-  apis: [path.join(process.cwd(), 'routes/api/**/*.js')],
+  apis: ['./routes/api/**/*.js'],
   // Ścieżka do plików zawierających endpointy
 };
 

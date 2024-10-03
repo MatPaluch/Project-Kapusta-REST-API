@@ -57,7 +57,7 @@ const options = {
       },
     },
   },
-  apis: ['./routes/api/swagger/*.js'], // Ścieżka do plików zawierających endpointy
+  apis: ['../routes/api/swagger/*.js'], // Ścieżka do plików zawierających endpointy
 };
 
 const specs = swaggerJsdoc(options);

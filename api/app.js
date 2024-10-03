@@ -59,7 +59,7 @@ const options = {
       },
     },
   },
-  apis: ['./routes/api/**/*.js'],
+  apis: [path.join(__dirname, '../routes/api/**/*.js')],
   // Ścieżka do plików zawierających endpointy
 };
 

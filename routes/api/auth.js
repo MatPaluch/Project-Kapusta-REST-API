@@ -6,7 +6,7 @@ const controllersAuthLogin = require('../controllers/auth/login');
 const controllersAuthLogout = require('../controllers/auth/logout');
 
 const authenticate = require('../controllers/auth/authenticateJWT');
-require('./swagger/1.3LogoutDesc');
+
 router.post('/register', controllersAuthRegister);
 
 router.post('/login', controllersAuthLogin);

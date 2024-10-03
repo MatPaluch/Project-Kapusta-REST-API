@@ -33,6 +33,7 @@ app.use('/transaction', transactionRouter);
 const path = require('path');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
+const registerEndpoint = require('../routes/api/swagger/registerEndpoint.js');
 
 const options = {
   definition: {
@@ -57,12 +58,12 @@ const options = {
         },
       },
     },
+    paths: {
+      ...registerEndpoint, // Podpięcie obiektu registerEndpoint
+    },
   },
-  apis: [
-    path.join(__dirname, '../routes/api/swagger/*.js'),
-    path.join(__dirname, '../routes/api/**/*.js'),
-    path.join(__dirname, '../routes/api/*.js'),
-  ],
+  apis: [path.join(__dirname, '../routes/api/*.js')],
+
   // Ścieżka do plików zawierających endpointy
 };
 

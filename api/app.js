@@ -19,7 +19,7 @@ require('../config/passportJWT.js');
 app.get('/', async (req, res) => {
   res.send({
     message: 'Hello! Everything is working.',
-    documentation: 'For specific documentation of this API go to -> /api-docs',
+    documentation: 'For specific documentation of this API go to /api-docs',
   });
 });
 app.get('/favicon.ico', (req, res) => {

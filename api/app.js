@@ -58,7 +58,11 @@ const options = {
       },
     },
   },
-  apis: [path.join(__dirname, '../routes/api/swagger/*.js')],
+  apis: [
+    path.join(__dirname, '../routes/api/swagger/*.js'),
+    path.join(__dirname, '../routes/api/**/*.js'),
+    path.join(__dirname, '../routes/api/*.js'),
+  ],
   // Ścieżka do plików zawierających endpointy
 };
 

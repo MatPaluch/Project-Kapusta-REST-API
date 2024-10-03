@@ -1,6 +1,7 @@
 const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
+const path = require('path');
 
 const authRouter = require('../routes/api/auth.js');
 const userRouter = require('../routes/api/user');
@@ -57,7 +58,7 @@ const options = {
       },
     },
   },
-  apis: ['../routes/api/swagger/*.js'], // Ścieżka do plików zawierających endpointy
+  apis: [path.join(__dirname, '../routes/api/swagger/*.js')], // Ścieżka do plików zawierających endpointy
 };
 
 const specs = swaggerJsdoc(options);

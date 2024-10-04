@@ -149,31 +149,6 @@ const inc = {
             },
           },
         },
-        422: {
-          // Added for validation errors
-          description: "Validation error in the request data",
-          content: {
-            "application/json": {
-              schema: {
-                type: "object",
-                properties: {
-                  status: {
-                    type: "string",
-                    example: "Error",
-                  },
-                  code: {
-                    type: "integer",
-                    example: 422,
-                  },
-                  message: {
-                    type: "string",
-                    example: "Invalid input data.",
-                  },
-                },
-              },
-            },
-          },
-        },
         500: {
           description: "Internal server error",
           content: {

@@ -79,9 +79,7 @@ const options = {
       ...register,
       ...login,
       ...logout,
-      ...addExpense,
       ...getExpenses,
-      ...addIncome,
       ...getIncomes,
       ...deleteTransaction,
       ...getExpensesCategories,
@@ -90,7 +88,8 @@ const options = {
       ...updateBalance,
       ...getUserData,
       ...getAvatar,
-    
+      ...addIncome,
+      ...addExpense,
     },
   },
   apis: [path.join(__dirname, "../routes/api/*.js")], // Ścieżka do plików zawierających endpointy

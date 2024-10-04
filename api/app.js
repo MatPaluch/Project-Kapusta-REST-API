@@ -41,7 +41,7 @@ const logout = require("../routes/api/swagger/logout.js");
 const swaggerInsertExpense = require("../routes/api/swagger/swaggerInsertExpense.js");
 const getExpenses = require("../routes/api/swagger/getExpenses.js");
 
-const swaggerInsertIncome = require("../routes/api/swagger/swaggerInsertIncome.js");
+const inc = require("../routes/api/swagger/inc.js");
 const getIncomes = require("../routes/api/swagger/getIncomes.js");
 
 const deleteTransaction = require("../routes/api/swagger/deleteTransaction.js");

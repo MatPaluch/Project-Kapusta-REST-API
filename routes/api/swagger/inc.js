@@ -1,4 +1,4 @@
-const swaggerInsertIncome = {
+const inc = {
   "/transaction/income": {
     post: {
       summary: "Add a new income",
@@ -203,4 +203,4 @@ const swaggerInsertIncome = {
   },
 };
 
-module.exports = swaggerInsertIncome;
+module.exports = inc;

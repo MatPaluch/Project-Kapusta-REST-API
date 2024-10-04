@@ -1,132 +1,168 @@
-const addUser = {
-    "/user": {
-      post: {
-        summary: "Add a new user",
-        tags: ["Users"],
-        security: [
-          {
-            bearerAuth: [],
+const addExpense = {
+  "/transaction/expense": {
+    post: {
+      summary: "Add a new expense",
+      tags: ["Transactions"],
+      security: [
+        {
+          bearerAuth: [],
+        },
+      ],
+      requestBody: {
+        required: true,
+        content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                amount: {
+                  type: "number",
+                  example: 250.0,
+                  description:
+                    "The amount of the expense (should be a positive number).",
+                },
+                category: {
+                  type: "string",
+                  example: "Food",
+                  description:
+                    "The category of the expense. Valid categories include Food, Transport, etc.",
+                },
+                description: {
+                  type: "string",
+                  example: "Grocery shopping",
+                  description: "A brief description of the expense.",
+                },
+                date: {
+                  type: "string",
+                  format: "date",
+                  example: "2024-10-01",
+                  description:
+                    "The date of the expense. If not provided, the current date will be used.",
+                },
+              },
+              required: ["amount", "category"], // Wymagane pola
+            },
           },
-        ],
-        requestBody: {
-          required: true,
+        },
+      },
+      responses: {
+        201: {
+          description: "Expense successfully added",
           content: {
             "application/json": {
               schema: {
                 type: "object",
                 properties: {
-                  username: {
-                    type: "string",
-                    example: "john_doe",
-                    description: "Unique username for the new user.",
+                  newBalance: {
+                    type: "number",
+                    example: 3250.0,
+                    description:
+                      "The new balance of the user after the expense has been deducted.",
                   },
-                  email: {
-                    type: "string",
-                    format: "email",
-                    example: "john.doe@example.com",
-                    description: "Email address of the user.",
-                  },
-                  password: {
-                    type: "string",
-                    example: "SecurePassword123!",
-                    description: "Password for the user account.",
+                  transaction: {
+                    type: "object",
+                    properties: {
+                      _id: {
+                        type: "string",
+                        example: "60c72b2f5f1b2c6c7c8f1d4a",
+                        description:
+                          "The unique identifier of the expense transaction.",
+                      },
+                      description: {
+                        type: "string",
+                        example: "Grocery shopping",
+                        description: "The description of the expense.",
+                      },
+                      amount: {
+                        type: "number",
+                        example: 250.0,
+                        description: "The amount of the expense.",
+                      },
+                      date: {
+                        type: "string",
+                        format: "date",
+                        example: "2024-10-01",
+                        description: "The date of the expense.",
+                      },
+                      category: {
+                        type: "string",
+                        example: "Food",
+                        description: "The category of the expense.",
+                      },
+                    },
                   },
                 },
-                required: ["username", "email", "password"], // Wymagane pola
               },
             },
           },
         },
-        responses: {
-          201: {
-            description: "User successfully created",
-            content: {
-              "application/json": {
-                schema: {
-                  type: "object",
-                  properties: {
-                    id: {
-                      type: "string",
-                      example: "60c72b2f5f1b2c6c7c8f1d3e",
-                      description: "Unique identifier of the newly created user.",
-                    },
-                    message: {
-                      type: "string",
-                      example: "User created successfully.",
-                      description: "Success message indicating that the user was created.",
-                    },
+        401: {
+          description: "Unauthorized",
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  status: {
+                    type: "string",
+                    example: "Error",
+                  },
+                  code: {
+                    type: "integer",
+                    example: 401,
+                  },
+                  message: {
+                    type: "string",
+                    example: "Invalid token",
                   },
                 },
               },
             },
           },
-          400: {
-            description: "Validation error in the request data",
-            content: {
-              "application/json": {
-                schema: {
-                  type: "object",
-                  properties: {
-                    status: {
-                      type: "string",
-                      example: "Error",
-                    },
-                    code: {
-                      type: "integer",
-                      example: 400,
-                    },
-                    message: {
-                      type: "string",
-                      example: "Username is required and must be unique.",
-                    },
+        },
+        400: {
+          description: "Validation error in the request data",
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  status: {
+                    type: "string",
+                    example: "Error",
+                  },
+                  code: {
+                    type: "integer",
+                    example: 400,
+                  },
+                  message: {
+                    type: "string",
+                    example:
+                      "Amount is required and should be a positive number.",
                   },
                 },
               },
             },
           },
-          409: {
-            description: "Conflict, user already exists",
-            content: {
-              "application/json": {
-                schema: {
-                  type: "object",
-                  properties: {
-                    status: {
-                      type: "string",
-                      example: "Error",
-                    },
-                    code: {
-                      type: "integer",
-                      example: 409,
-                    },
-                    message: {
-                      type: "string",
-                      example: "User with this email already exists.",
-                    },
+        },
+        500: {
+          description: "Internal server error",
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  status: {
+                    type: "string",
+                    example: "Error",
                   },
-                },
-              },
-            },
-          },
-          500: {
-            description: "Internal server error",
-            content: {
-              "application/json": {
-                schema: {
-                  type: "object",
-                  properties: {
-                    status: {
-                      type: "string",
-                      example: "Error",
-                    },
-                    code: {
-                      type: "integer",
-                      example: 500,
-                    },
-                    message: {
-                      type: "string",
-                      example: "Internal server error. Please try again later.",
-                    },
+                  code: {
+                    type: "integer",
+                    example: 500,
+                  },
+                  message: {
+                    type: "string",
+                    example: "Internal server error. Please try again later.",
                   },
                 },
               },
@@ -135,7 +171,7 @@ const addUser = {
         },
       },
     },
-  };
-  
-  module.exports = addUser;
-  
+  },
+};
+
+module.exports = addExpense;

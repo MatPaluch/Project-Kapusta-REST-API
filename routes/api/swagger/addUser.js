@@ -1,4 +1,4 @@
-const addExpense = {
+const swaggerInsertExpense = {
   "/transaction/expense": {
     post: {
       summary: "Add a new expense",
@@ -17,19 +17,19 @@ const addExpense = {
               properties: {
                 amount: {
                   type: "number",
-                  example: 250.0,
+                  example: 50.75,
                   description:
                     "The amount of the expense (should be a positive number).",
                 },
                 category: {
                   type: "string",
-                  example: "Food",
+                  example: "Products",
                   description:
-                    "The category of the expense. Valid categories include Food, Transport, etc.",
+                    "The category of the expense. Valid categories include Products, Alcohol, Entertainment, Health, Transport, Housing, Technique, Communal, Communication, Sports, Hobbies, Education, and Other.",
                 },
                 description: {
                   type: "string",
-                  example: "Grocery shopping",
+                  example: "Bought groceries for the week",
                   description: "A brief description of the expense.",
                 },
                 date: {
@@ -40,7 +40,6 @@ const addExpense = {
                     "The date of the expense. If not provided, the current date will be used.",
                 },
               },
-              required: ["amount", "category"], // Wymagane pola
             },
           },
         },
@@ -55,7 +54,7 @@ const addExpense = {
                 properties: {
                   newBalance: {
                     type: "number",
-                    example: 3250.0,
+                    example: 949.25,
                     description:
                       "The new balance of the user after the expense has been deducted.",
                   },
@@ -64,18 +63,18 @@ const addExpense = {
                     properties: {
                       _id: {
                         type: "string",
-                        example: "60c72b2f5f1b2c6c7c8f1d4a",
+                        example: "60c72b2f5f1b2c6c7c8f1d3c",
                         description:
                           "The unique identifier of the expense transaction.",
                       },
                       description: {
                         type: "string",
-                        example: "Grocery shopping",
+                        example: "Bought groceries for the week",
                         description: "The description of the expense.",
                       },
                       amount: {
                         type: "number",
-                        example: 250.0,
+                        example: 50.75,
                         description: "The amount of the expense.",
                       },
                       date: {
@@ -86,7 +85,7 @@ const addExpense = {
                       },
                       category: {
                         type: "string",
-                        example: "Food",
+                        example: "Products",
                         description: "The category of the expense.",
                       },
                     },
@@ -121,7 +120,7 @@ const addExpense = {
           },
         },
         400: {
-          description: "Validation error in the request data",
+          description: "Validation error for the request data",
           content: {
             "application/json": {
               schema: {
@@ -138,7 +137,7 @@ const addExpense = {
                   message: {
                     type: "string",
                     example:
-                      "Amount is required and should be a positive number.",
+                      "Amount is required and should be a positive number",
                   },
                 },
               },
@@ -162,7 +161,7 @@ const addExpense = {
                   },
                   message: {
                     type: "string",
-                    example: "Internal server error. Please try again later.",
+                    example: "Internal server error",
                   },
                 },
               },
@@ -174,4 +173,4 @@ const addExpense = {
   },
 };
 
-module.exports = addExpense;
+module.exports = swaggerInsertExpense;

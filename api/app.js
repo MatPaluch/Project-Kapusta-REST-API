@@ -37,8 +37,8 @@ const swaggerJsdoc = require("swagger-jsdoc");
 const register = require("../routes/api/swagger/register.js");
 const login = require("../routes/api/swagger/login.js");
 const logout = require("../routes/api/swagger/logout.js");
-const post_get_Expense = require("../routes/api/swagger/post_get_Expense.js");
-const post_get_Income = require("../routes/api/swagger/post_get_Income.js");
+const post_and_get_Expense = require("../routes/api/swagger/post_get_Expense.js");
+const post_and_get_Income = require("../routes/api/swagger/post_get_Income.js");
 const deleteTransaction = require("../routes/api/swagger/deleteTransaction.js");
 const getExpensesCategories = require("../routes/api/swagger/getExpensesCategories.js");
 const getIncomesCategories = require("../routes/api/swagger/getIncomesCategories.js");
@@ -75,8 +75,8 @@ const options = {
         ...register,
         ...login,
         ...logout,
-        ...post_get_Expense,
-        ...post_get_Income,
+        ...post_and_get_Expense,
+        ...post_and_get_Income,
         ...deleteTransaction,
         ...getExpensesCategories,
         ...getIncomesCategories,
@@ -85,7 +85,6 @@ const options = {
         ...getUserData,
         ...getAvatar,
       },
-    
     ],
   },
   apis: [path.join(__dirname, "../routes/api/*.js")], // Ścieżka do plików zawierających endpointy

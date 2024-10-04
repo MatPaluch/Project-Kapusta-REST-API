@@ -1,4 +1,4 @@
-const addExpense = {
+const post_and_get_Expense = {
   "/transaction/expense": {
     post: {
       summary: "Add a new expense",
@@ -350,4 +350,4 @@ const addExpense = {
   },
 };
 
-module.exports = addExpense;
+module.exports = post_and_get_Expense;

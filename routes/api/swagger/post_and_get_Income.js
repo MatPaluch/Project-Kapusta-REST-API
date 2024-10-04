@@ -1,4 +1,4 @@
-const getIncomes = {
+const post_and_get_Income = {
   "/transaction/income": {
     post: {
       summary: "Add a new income",
@@ -281,4 +281,4 @@ const getIncomes = {
   },
 };
 
-module.exports = getIncomes;
+module.exports = post_and_get_Income;

@@ -38,10 +38,10 @@ const register = require("../routes/api/swagger/register.js");
 const login = require("../routes/api/swagger/login.js");
 const logout = require("../routes/api/swagger/logout.js");
 
-const swaggerInsertExpense = require("../routes/api/swagger/swaggerInsertExpense.js");
+const addExpense = require("../routes/api/swagger/addExpense.js");
 const getExpenses = require("../routes/api/swagger/getExpenses.js");
 
-const inc = require("../routes/api/swagger/inc.js");
+const addIncome = require("../routes/api/swagger/addIncome.js");
 const getIncomes = require("../routes/api/swagger/getIncomes.js");
 
 const deleteTransaction = require("../routes/api/swagger/deleteTransaction.js");
@@ -51,7 +51,6 @@ const getMonthlyReports = require("../routes/api/swagger/getMonthlyReports.js");
 const updateBalance = require("../routes/api/swagger/updateBalance.js");
 const getUserData = require("../routes/api/swagger/getUserData.js");
 const getAvatar = require("../routes/api/swagger/getAvatar.js");
-const addExpense = require("../routes/api/swagger/addExpense.js");
 
 const options = {
   definition: {
@@ -80,9 +79,9 @@ const options = {
       ...register,
       ...login,
       ...logout,
-      ...swaggerInsertExpense,
+      ...addExpense,
       ...getExpenses,
-      ...inc,
+      ...addIncome,
       ...getIncomes,
       ...deleteTransaction,
       ...getExpensesCategories,
@@ -91,7 +90,7 @@ const options = {
       ...updateBalance,
       ...getUserData,
       ...getAvatar,
-      ...addExpense,
+    
     },
   },
   apis: [path.join(__dirname, "../routes/api/*.js")], // Ścieżka do plików zawierających endpointy

@@ -37,13 +37,8 @@ const swaggerJsdoc = require("swagger-jsdoc");
 const register = require("../routes/api/swagger/register.js");
 const login = require("../routes/api/swagger/login.js");
 const logout = require("../routes/api/swagger/logout.js");
-
-const addExpense = require("../routes/api/swagger/addExpense.js");
-const getExpenses = require("../routes/api/swagger/getExpenses.js");
-
-const addIncome = require("../routes/api/swagger/addIncome.js");
-const getIncomes = require("../routes/api/swagger/getIncomes.js");
-
+const post_get_Expense = require("../routes/api/swagger/post_get_Expense.js");
+const post_get_Income = require("../routes/api/swagger/post_get_Income.js");
 const deleteTransaction = require("../routes/api/swagger/deleteTransaction.js");
 const getExpensesCategories = require("../routes/api/swagger/getExpensesCategories.js");
 const getIncomesCategories = require("../routes/api/swagger/getIncomesCategories.js");
@@ -77,20 +72,20 @@ const options = {
     },
     paths: [
       {
-        // ...register,
-        // ...login,
-        // ...logout,
-        ...getExpenses,
-        ...getIncomes,
-        // ...deleteTransaction,
-        // ...getExpensesCategories,
-        // ...getIncomesCategories,
-        // ...getMonthlyReports,
-        // ...updateBalance,
-        // ...getUserData,
-        // ...getAvatar,
+        ...register,
+        ...login,
+        ...logout,
+        ...post_get_Expense,
+        ...post_get_Income,
+        ...deleteTransaction,
+        ...getExpensesCategories,
+        ...getIncomesCategories,
+        ...getMonthlyReports,
+        ...updateBalance,
+        ...getUserData,
+        ...getAvatar,
       },
-      { ...addIncome, ...addExpense },
+    
     ],
   },
   apis: [path.join(__dirname, "../routes/api/*.js")], // Ścieżka do plików zawierających endpointy

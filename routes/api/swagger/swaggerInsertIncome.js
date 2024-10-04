@@ -17,12 +17,14 @@ const swaggerInsertIncome = {
               properties: {
                 amount: {
                   type: "number",
+                  minimum: 0,
                   example: 1500.0,
                   description:
                     "The amount of the income (should be a positive number).",
                 },
                 category: {
                   type: "string",
+                  enum: ["Salary", "Other income"],
                   example: "Salary",
                   description:
                     "The category of the income. Valid categories include Salary and Other income.",
@@ -30,16 +32,19 @@ const swaggerInsertIncome = {
                 description: {
                   type: "string",
                   example: "Monthly salary",
-                  description: "A brief description of the income.",
+                  maxLength: 100,
+                  description:
+                    "A brief description of the income. Maximum length is 100 characters.",
                 },
                 date: {
                   type: "string",
                   format: "date",
                   example: "2024-10-01",
                   description:
-                    "The date of the income. If not provided, the current date will be used.",
+                    "The date of the income in YYYY-MM-DD format. If not provided, the current date will be used.",
                 },
               },
+              required: ["amount", "category"], // Specify required fields
             },
           },
         },
@@ -137,7 +142,32 @@ const swaggerInsertIncome = {
                   message: {
                     type: "string",
                     example:
-                      "Amount is required and should be a positive number",
+                      "Amount is required and should be a positive number.",
+                  },
+                },
+              },
+            },
+          },
+        },
+        422: {
+          // Added for validation errors
+          description: "Validation error in the request data",
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  status: {
+                    type: "string",
+                    example: "Error",
+                  },
+                  code: {
+                    type: "integer",
+                    example: 422,
+                  },
+                  message: {
+                    type: "string",
+                    example: "Invalid input data.",
                   },
                 },
               },
@@ -161,7 +191,7 @@ const swaggerInsertIncome = {
                   },
                   message: {
                     type: "string",
-                    example: "Internal server error",
+                    example: "Internal server error. Please try again later.",
                   },
                 },
               },

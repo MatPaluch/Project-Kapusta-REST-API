@@ -1,4 +1,4 @@
-const transactionIncomeCategories = {
+const getIncomesCategories = {
   "/transaction/income-categories": {
     get: {
       summary: "Get all income categories",
@@ -59,4 +59,4 @@ const transactionIncomeCategories = {
   },
 };
 
-module.exports = transactionIncomeCategories;
+module.exports = getIncomesCategories;

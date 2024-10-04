@@ -1,4 +1,4 @@
-const transactionIncome = {
+const getIncomes = {
   "/transaction/income": {
     get: {
       summary: "Get all income and stats for each month",
@@ -106,4 +106,4 @@ const transactionIncome = {
   },
 };
 
-module.exports = transactionIncome;
+module.exports = getIncomes;

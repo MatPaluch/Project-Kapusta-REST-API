@@ -33,9 +33,21 @@ app.use("/transaction", transactionRouter);
 const path = require("path");
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
+
 const register = require("../routes/api/swagger/register.js");
 const login = require("../routes/api/swagger/login.js");
 const logout = require("../routes/api/swagger/logout.js");
+const addExpense = require("../routes/api/swagger/addExpense.js");
+const getExpenses = require("../routes/api/swagger/getExpenses.js");
+const addIncome = require("../routes/api/swagger/addIncome.js");
+const getIncomes = require("../routes/api/swagger/getIncomes.js");
+const deleteTransaction = require("../routes/api/swagger/deleteTransaction.js");
+const getExpensesCategories = require("../routes/api/swagger/getExpensesCategories.js");
+const getIncomesCategories = require("../routes/api/swagger/getIncomesCategories.js");
+const getMonthlyReports = require("../routes/api/swagger/getMonthlyReports.js");
+const updateBalance = require("../routes/api/swagger/updateBalance.js");
+const getUserData = require("../routes/api/swagger/getUserData.js");
+const getAvatar = require("../routes/api/swagger/getAvatar.js");
 
 const options = {
   definition: {
@@ -64,6 +76,17 @@ const options = {
       ...register,
       ...login,
       ...logout,
+      ...addExpense,
+      ...getExpenses,
+      ...addIncome,
+      ...getIncomes,
+      ...deleteTransaction,
+      ...getExpensesCategories,
+      ...getIncomesCategories,
+      ...getMonthlyReports,
+      ...updateBalance,
+      ...getUserData,
+      ...getAvatar,
     },
   },
   apis: [path.join(__dirname, "../routes/api/*.js")], // Ścieżka do plików zawierających endpointy

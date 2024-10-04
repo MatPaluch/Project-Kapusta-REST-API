@@ -1,4 +1,4 @@
-const transactionExpenseCategories = {
+const getExpensesCategories = {
   "/transaction/expense-categories": {
     get: {
       summary: "Get all expense categories",
@@ -71,4 +71,4 @@ const transactionExpenseCategories = {
   },
 };
 
-module.exports = transactionExpenseCategories;
+module.exports = getExpensesCategories;

@@ -81,7 +81,7 @@ const options = {
       ...logout,
       ...swaggerInsertExpense,
       ...getExpenses,
-      ...swaggerInsertIncome,
+      ...inc,
       ...getIncomes,
       ...deleteTransaction,
       ...getExpensesCategories,

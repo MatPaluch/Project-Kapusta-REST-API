@@ -1,4 +1,4 @@
-const registerEndpoint = {
+const registerSwagger = {
   '/auth/register': {
     post: {
       summary: 'Register a new user',

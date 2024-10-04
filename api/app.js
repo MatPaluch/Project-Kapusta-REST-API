@@ -59,12 +59,12 @@ const options = {
       },
     },
     paths: {
-      ...registerEndpoint, // Podpięcie obiektu registerEndpoint
+      ...registerEndpoint,// Podpięcie obiektu registerEndpoint
     },
   },
-  apis: [path.join(__dirname, '../routes/api/*.js')],
+  apis: [path.join(__dirname, '../routes/api/*.js')],// Ścieżka do plików zawierających endpointy
 
-  // Ścieżka do plików zawierających endpointy
+  
 };
 
 const specs = swaggerJsdoc(options);

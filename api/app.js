@@ -51,7 +51,7 @@ const getMonthlyReports = require("../routes/api/swagger/getMonthlyReports.js");
 const updateBalance = require("../routes/api/swagger/updateBalance.js");
 const getUserData = require("../routes/api/swagger/getUserData.js");
 const getAvatar = require("../routes/api/swagger/getAvatar.js");
-const addUser = require("../routes/api/swagger/addUser.js");
+const addExpense = require("../routes/api/swagger/addExpense.js");
 
 const options = {
   definition: {

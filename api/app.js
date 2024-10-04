@@ -39,7 +39,7 @@ const login = require("../routes/api/swagger/login.js");
 const logout = require("../routes/api/swagger/logout.js");
 const addExpense = require("../routes/api/swagger/swaggerInsertExpense.js");
 const getExpenses = require("../routes/api/swagger/getExpenses.js");
-const addIncome = require("../routes/api/swagger/swaggerInsertIncome.js");
+const swaggerInsertIncome = require("../routes/api/swagger/swaggerInsertIncome.js");
 const getIncomes = require("../routes/api/swagger/getIncomes.js");
 const deleteTransaction = require("../routes/api/swagger/deleteTransaction.js");
 const getExpensesCategories = require("../routes/api/swagger/getExpensesCategories.js");
@@ -76,9 +76,9 @@ const options = {
       ...register,
       ...login,
       ...logout,
-      ...addExpense,
+      ...swaggerInsertExpense,
       ...getExpenses,
-      ...addIncome,
+      ...swaggerInsertIncome,
       ...getIncomes,
       ...deleteTransaction,
       ...getExpensesCategories,

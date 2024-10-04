@@ -1,4 +1,4 @@
-const addExpense = {
+const swaggerInsertExpense = {
   "/transaction/expense": {
     post: {
       summary: "Add a new expense",
@@ -173,4 +173,4 @@ const addExpense = {
   },
 };
 
-module.exports = addExpense;
+module.exports = swaggerInsertExpense;

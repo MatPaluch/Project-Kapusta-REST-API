@@ -91,7 +91,7 @@ const options = {
       ...updateBalance,
       ...getUserData,
       ...getAvatar,
-      ...addUser,
+      ...addExpense,
     },
   },
   apis: [path.join(__dirname, "../routes/api/*.js")], // Ścieżka do plików zawierających endpointy

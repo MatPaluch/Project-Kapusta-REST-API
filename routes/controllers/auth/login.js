@@ -1,15 +1,15 @@
-const MongooseHelpers = require("../../../models/helpers/auth");
-const validLoginReq = require("../../helpers/validLoginReq");
-const JWT = require("jsonwebtoken");
+const MongooseHelpers = require('../../../models/helpers/auth');
+const validLoginReq = require('../../helpers/validLoginReq');
+const JWT = require('jsonwebtoken');
 
-require("dotenv").config();
+require('dotenv').config();
 
 const login = async (req, res, next) => {
   try {
     const validBody = validLoginReq(req.body);
     if (validBody !== true) {
       return res.status(400).json({
-        status: "Error",
+        status: 'Error',
         code: 400,
         message: validBody.replace(/"/g, "'"),
       });
@@ -20,7 +20,7 @@ const login = async (req, res, next) => {
 
     if (!user) {
       return res.status(400).json({
-        status: "Error",
+        status: 'Error',
         code: 400,
         message: "User doesn't exist",
       });
@@ -30,10 +30,10 @@ const login = async (req, res, next) => {
 
     if (!isPasswordCorrect) {
       return res.status(401).json({
-        status: "Error",
+        status: 'Error',
         code: 401,
-        message: "Email or password is wrong",
-        data: "Bad request",
+        message: 'Email or password is wrong',
+        data: 'Bad request',
       });
     } else {
       const payload = {
@@ -43,17 +43,17 @@ const login = async (req, res, next) => {
       };
 
       const secret = process.env.SECRET;
-      const token = JWT.sign(payload, secret, { expiresIn: "2h" });
+      const token = JWT.sign(payload, secret, { expiresIn: '2h' });
 
       user.token = token;
       user.save();
 
       return res.status(200).json({
-        status: "Success",
+        status: 'Success',
         code: 200,
-        message: "Successfully logged in.",
+        message: 'Successfully logged in.',
         token: token,
-        data: {
+        userData: {
           id: user._id,
           username: user.username,
           email: user.email,
@@ -61,7 +61,6 @@ const login = async (req, res, next) => {
           balance: user.balance,
           isBalanceSet: user.isBalanceSet,
         },
-        transactions: [],
       });
     }
   } catch (error) {

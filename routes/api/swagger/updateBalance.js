@@ -1,21 +1,21 @@
 const updateBalance = {
-  "/user/balance": {
+  '/user/balance': {
     patch: {
-      summary: "Update user balance",
+      summary: 'Update user balance',
       description:
         "Updates the logged-in user's account balance. Requires a valid number for the balance.",
       security: [{ bearerAuth: [] }],
-      tags: ["User"],
+      tags: ['User'],
       requestBody: {
         required: true,
         content: {
-          "application/json": {
+          'application/json': {
             schema: {
-              type: "object",
+              type: 'object',
               properties: {
                 balance: {
-                  type: "number",
-                  description: "The new balance to set for the user.",
+                  type: 'number',
+                  description: 'The new balance to set for the user.',
                   example: 1200.5,
                 },
               },
@@ -25,33 +25,27 @@ const updateBalance = {
       },
       responses: {
         200: {
-          description: "Balance updated successfully.",
+          description: 'Balance updated successfully.',
           content: {
-            "application/json": {
+            'application/json': {
               schema: {
-                type: "object",
+                type: 'object',
                 properties: {
-                  status: { type: "string", example: "Success" },
-                  code: { type: "integer", example: 200 },
+                  status: { type: 'string', example: 'Success' },
+                  code: { type: 'integer', example: 200 },
                   message: {
-                    type: "string",
-                    example: "Balance updated successfully",
+                    type: 'string',
+                    example: 'Balance updated successfully',
                   },
-                  data: {
-                    type: "object",
-                    properties: {
-                      balance: {
-                        type: "number",
-                        description: "The updated balance.",
-                        example: 1200.5,
-                      },
-                      isBalanceSet: {
-                        type: "boolean",
-                        description:
-                          "Indicates whether the balance has been set by the user.",
-                        example: true,
-                      },
-                    },
+                  balance: {
+                    type: 'number',
+                    description: 'The updated balance.',
+                    example: 1200.5,
+                  },
+                  isBalanceSet: {
+                    type: 'boolean',
+                    description: 'Indicates whether the balance has been set by the user.',
+                    example: true,
                   },
                 },
               },
@@ -59,17 +53,17 @@ const updateBalance = {
           },
         },
         400: {
-          description: "Invalid balance value or missing balance field.",
+          description: 'Invalid balance value or missing balance field.',
           content: {
-            "application/json": {
+            'application/json': {
               schema: {
-                type: "object",
+                type: 'object',
                 properties: {
-                  status: { type: "string", example: "Error" },
-                  code: { type: "integer", example: 400 },
+                  status: { type: 'string', example: 'Error' },
+                  code: { type: 'integer', example: 400 },
                   message: {
-                    type: "string",
-                    example: "Balance is required and should be a valid number",
+                    type: 'string',
+                    example: 'Balance is required and should be a valid number',
                   },
                 },
               },
@@ -77,30 +71,30 @@ const updateBalance = {
           },
         },
         401: {
-          description: "Unauthorized",
+          description: 'Unauthorized',
           content: {
-            "application/json": {
+            'application/json': {
               schema: {
-                type: "object",
+                type: 'object',
                 properties: {
-                  status: { type: "string", example: "Error" },
-                  code: { type: "integer", example: 401 },
-                  message: { type: "string", example: "Invalid token" },
+                  status: { type: 'string', example: 'Error' },
+                  code: { type: 'integer', example: 401 },
+                  message: { type: 'string', example: 'Invalid token' },
                 },
               },
             },
           },
         },
         500: {
-          description: "Internal server error",
+          description: 'Internal server error',
           content: {
-            "application/json": {
+            'application/json': {
               schema: {
-                type: "object",
+                type: 'object',
                 properties: {
-                  status: { type: "string", example: "Error" },
-                  code: { type: "integer", example: 500 },
-                  message: { type: "string", example: "Internal server error" },
+                  status: { type: 'string', example: 'Error' },
+                  code: { type: 'integer', example: 500 },
+                  message: { type: 'string', example: 'Internal server error' },
                 },
               },
             },

@@ -40,11 +40,6 @@ const register = async (req, res, next) => {
       status: 'Success',
       code: 201,
       message: 'User successfully created!',
-      user: {
-        username: newUser.username,
-        email: newUser.email,
-        avatarURL: newUser.avatarURL,
-      },
     });
   } catch (error) {
     console.error(error);

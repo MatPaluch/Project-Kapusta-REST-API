@@ -1,5 +1,3 @@
-const User = require('../../../models/mongoose/userSchema');
-
 const updateBalance = async (req, res, next) => {
   try {
     const { balance } = req.body;
@@ -21,10 +19,8 @@ const updateBalance = async (req, res, next) => {
       status: 'Success',
       code: 200,
       message: 'Balance updated successfully',
-      data: {
-        balance: user.balance,
-        isBalanceSet: user.isBalanceSet,
-      },
+      balance: user.balance,
+      isBalanceSet: user.isBalanceSet,
     });
   } catch (error) {
     next(error);

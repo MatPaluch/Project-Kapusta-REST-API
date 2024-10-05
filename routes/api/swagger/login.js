@@ -1,23 +1,23 @@
 const login = {
-  "/auth/login": {
+  '/auth/login': {
     post: {
-      summary: "Log in a user",
-      tags: ["Authorization"],
+      summary: 'Log in a user',
+      tags: ['Authorization'],
       requestBody: {
         required: true,
         content: {
-          "application/json": {
+          'application/json': {
             schema: {
-              type: "object",
+              type: 'object',
               properties: {
                 email: {
-                  type: "string",
-                  example: "johnlake@example.com",
+                  type: 'string',
+                  example: 'johnlake@example.com',
                   description: "User's email address",
                 },
                 password: {
-                  type: "string",
-                  example: "Examplepassword12#$",
+                  type: 'string',
+                  example: 'Examplepassword12#$',
                   description: "User's password",
                 },
               },
@@ -27,59 +27,52 @@ const login = {
       },
       responses: {
         200: {
-          description: "User successfully logged in",
+          description: 'User successfully logged in',
           content: {
-            "application/json": {
+            'application/json': {
               schema: {
-                type: "object",
+                type: 'object',
                 properties: {
                   status: {
-                    type: "string",
-                    example: "Success",
+                    type: 'string',
+                    example: 'Success',
                   },
                   code: {
-                    type: "integer",
+                    type: 'integer',
                     example: 200,
                   },
                   message: {
-                    type: "string",
-                    example: "Successfully logged in.",
+                    type: 'string',
+                    example: 'Successfully logged in.',
                   },
                   token: {
-                    type: "string",
-                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+                    type: 'string',
+                    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9',
                   },
-                  data: {
-                    type: "object",
+                  userData: {
+                    type: 'object',
                     properties: {
                       id: {
-                        type: "string",
-                        example: "60c72b2f9b1e8b001c8c5d1e",
+                        type: 'string',
+                        example: '60c72b2f9b1e8b001c8c5d1e',
                       },
                       username: {
-                        type: "string",
-                        example: "John Lake",
+                        type: 'string',
+                        example: 'John Lake',
                       },
                       email: {
-                        type: "string",
-                        example: "johnlake@example.com",
+                        type: 'string',
+                        example: 'johnlake@example.com',
                       },
                       avatarURL: {
-                        type: "string",
+                        type: 'string',
                         example:
-                          "https://s.gravatar.com/avatar/2a05350563a1f1b755926c329219afc4?s=300&d=wavatar&r=x",
+                          'https://s.gravatar.com/avatar/2a05350563a1f1b755926c329219afc4?s=300&d=wavatar&r=x',
                       },
                       balance: {
-                        type: "number",
+                        type: 'number',
                         example: 1000.5,
                       },
-                    },
-                  },
-                  transactions: {
-                    type: "array",
-                    items: {
-                      type: "object",
-                      example: [],
                     },
                   },
                 },
@@ -90,20 +83,20 @@ const login = {
         400: {
           description: "User doesn't exist or validation error in request data",
           content: {
-            "application/json": {
+            'application/json': {
               schema: {
-                type: "object",
+                type: 'object',
                 properties: {
                   status: {
-                    type: "string",
-                    example: "Error",
+                    type: 'string',
+                    example: 'Error',
                   },
                   code: {
-                    type: "integer",
+                    type: 'integer',
                     example: 400,
                   },
                   message: {
-                    type: "string",
+                    type: 'string',
                     example: "User doesn't exist",
                   },
                 },
@@ -112,27 +105,27 @@ const login = {
           },
         },
         401: {
-          description: "Incorrect email or password",
+          description: 'Incorrect email or password',
           content: {
-            "application/json": {
+            'application/json': {
               schema: {
-                type: "object",
+                type: 'object',
                 properties: {
                   status: {
-                    type: "string",
-                    example: "Error",
+                    type: 'string',
+                    example: 'Error',
                   },
                   code: {
-                    type: "integer",
+                    type: 'integer',
                     example: 401,
                   },
                   message: {
-                    type: "string",
-                    example: "Email or password is wrong",
+                    type: 'string',
+                    example: 'Email or password is wrong',
                   },
                   data: {
-                    type: "string",
-                    example: "Bad request",
+                    type: 'string',
+                    example: 'Bad request',
                   },
                 },
               },
@@ -140,23 +133,23 @@ const login = {
           },
         },
         500: {
-          description: "Internal server error",
+          description: 'Internal server error',
           content: {
-            "application/json": {
+            'application/json': {
               schema: {
-                type: "object",
+                type: 'object',
                 properties: {
                   status: {
-                    type: "string",
-                    example: "Error",
+                    type: 'string',
+                    example: 'Error',
                   },
                   code: {
-                    type: "integer",
+                    type: 'integer',
                     example: 500,
                   },
                   message: {
-                    type: "string",
-                    example: "Internal server error",
+                    type: 'string',
+                    example: 'Internal server error',
                   },
                 },
               },

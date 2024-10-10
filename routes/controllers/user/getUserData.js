@@ -12,7 +12,7 @@ const getUserData = async (req, res, next) => {
       description: transaction.description,
       category: transaction.category,
       amount: Math.abs(transaction.amount),
-      date: transaction.datetoLocaleDateString('pl-PL', {
+      date: transaction.date.toLocaleDateString('pl-PL', {
         day: '2-digit',
         month: '2-digit',
         year: 'numeric',

@@ -1,5 +1,3 @@
-const Transaction = require('../../../models/mongoose/transactionSchema');
-
 const addExpense = async (req, res, next) => {
   try {
     const { amount, category, description, date } = req.body;
@@ -30,11 +28,23 @@ const addExpense = async (req, res, next) => {
       });
     }
 
-    const transactionDate = date ? new Date(date) : null;
-    if (!transactionDate || isNaN(transactionDate.getTime())) {
+    // Rozdziel datę na dzień, miesiąc i rok
+    const dateParts = date.split('.');
+    if (dateParts.length !== 3) {
+      return next({ status: 400, message: 'Invalid date format. Please use dd.MM.yyyy.' });
+    }
+
+    const day = Number(dateParts[0]);
+    const month = Number(dateParts[1]) - 1; // Zmniejszamy o 1
+    const year = Number(dateParts[2]);
+
+    const transactionDate = new Date(year, month, day);
+
+    // Sprawdź, czy data jest ważna
+    if (isNaN(transactionDate.getTime())) {
       return next({
         status: 400,
-        message: 'Invalid or missing date. Please provide a valid date.',
+        message: 'Invalid or missing date. Please provide a valid date in dd.MM.yyyy format.',
       });
     }
 
@@ -57,7 +67,11 @@ const addExpense = async (req, res, next) => {
         _id: newExpense._id,
         description: newExpense.description,
         amount: Math.abs(newExpense.amount),
-        date: transactionDate.toISOString().split('T')[0],
+        date: transactionDate.toLocaleDateString('pl-PL', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+        }),
         category: newExpense.category,
       },
     };

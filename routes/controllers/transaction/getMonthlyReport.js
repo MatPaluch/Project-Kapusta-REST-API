@@ -19,7 +19,7 @@ const getMonthlyReport = async (req, res, next) => {
 
     const transactions = await Transaction.find({
       userId: user._id,
-      createdAt: {
+      date: {
         $gte: startDate,
         $lt: endDate,
       },

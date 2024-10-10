@@ -8,17 +8,21 @@ const getIncome = async (req, res, next) => {
     const incomes = await Transaction.find({
       userId: user._id,
       type: 'income',
-      createdAt: {
+      date: {
         $gte: new Date(`${currentYear}-01-01T00:00:00.000Z`),
         $lte: new Date(`${currentYear}-12-31T23:59:59.999Z`),
       },
-    }).sort({ createdAt: 1 });
+    }).sort({ date: 1 });
 
     const formattedIncomes = incomes.map(income => ({
       _id: income._id,
       description: income.description,
       amount: income.amount,
-      date: income.createdAt.toISOString().split('T')[0],
+      date: income.date.toLocaleDateString('pl-PL', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+      }), // Używamy toLocaleDateString do formatowania daty
       category: income.category,
     }));
 
@@ -53,7 +57,7 @@ const getIncome = async (req, res, next) => {
     ];
 
     incomes.forEach(income => {
-      const monthIndex = income.createdAt.getMonth();
+      const monthIndex = income.date.getMonth();
       const monthName = monthNames[monthIndex];
 
       if (monthStats[monthName] === 'N/A') {

@@ -8,17 +8,21 @@ const getExpenseStatement = async (req, res, next) => {
     const expenses = await Transaction.find({
       userId: user._id,
       type: 'expense',
-      createdAt: {
+      date: {
         $gte: new Date(`${currentYear}-01-01T00:00:00.000Z`),
         $lte: new Date(`${currentYear}-12-31T23:59:59.999Z`),
       },
-    }).sort({ createdAt: 1 });
+    }).sort({ date: 1 });
 
     const formattedExpenses = expenses.map(expense => ({
       _id: expense._id,
       description: expense.description,
       amount: Math.abs(expense.amount),
-      date: expense.createdAt.toISOString().split('T')[0],
+      date: expense.date.toLocaleDateString('pl-PL', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+      }), // Używamy toLocaleDateString do formatowania daty
       category: expense.category,
     }));
 
@@ -53,7 +57,7 @@ const getExpenseStatement = async (req, res, next) => {
     ];
 
     expenses.forEach(expense => {
-      const monthIndex = expense.createdAt.getMonth();
+      const monthIndex = expense.date.getMonth();
       const monthName = monthNames[monthIndex];
 
       if (monthStats[monthName] === 'N/A') {

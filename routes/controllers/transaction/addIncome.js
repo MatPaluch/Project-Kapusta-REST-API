@@ -8,21 +8,33 @@ const addIncome = async (req, res, next) => {
     const incomeCategories = ['Salary', 'Other income'];
 
     if (!amount || amount <= 0) {
-      return next({ status: 400, message: 'Amount is required and should be a positive number' });
+      return next({ status: 400, message: 'Amount is required and should be a positive number.' });
     }
 
     if (!category || !incomeCategories.includes(category)) {
       return next({
         status: 400,
-        message: 'Invalid category provided. Valid categories are "Salary" and "Other income".',
+        message: `Invalid category provided. Valid categories are: ${incomeCategories.join(', ')}`,
       });
     }
 
-    const transactionDate = date ? new Date(date) : null;
-    if (!transactionDate || isNaN(transactionDate.getTime())) {
+    // Rozdziel datę na dzień, miesiąc i rok
+    const dateParts = date ? date.split('.') : [];
+    if (dateParts.length !== 3) {
+      return next({ status: 400, message: 'Invalid date format. Please use dd.MM.yyyy.' });
+    }
+
+    const day = Number(dateParts[0]);
+    const month = Number(dateParts[1]) - 1; // Zmniejszamy o 1
+    const year = Number(dateParts[2]);
+
+    const transactionDate = new Date(year, month, day);
+
+    // Sprawdź, czy data jest ważna
+    if (isNaN(transactionDate.getTime())) {
       return next({
         status: 400,
-        message: 'Invalid or missing date. Please provide a valid date.',
+        message: 'Invalid or missing date. Please provide a valid date in dd.MM.yyyy format.',
       });
     }
 
@@ -32,7 +44,7 @@ const addIncome = async (req, res, next) => {
       category,
       description,
       type: 'income',
-      createdAt: transactionDate,
+      date: transactionDate,
     });
 
     await newIncome.save();
@@ -44,8 +56,12 @@ const addIncome = async (req, res, next) => {
       transaction: {
         _id: newIncome._id,
         description: newIncome.description,
-        amount: newIncome.amount,
-        date: transactionDate.toISOString().split('T')[0],
+        amount: Math.abs(newIncome.amount),
+        date: transactionDate.toLocaleDateString('pl-PL', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+        }),
         category: newIncome.category,
       },
     };

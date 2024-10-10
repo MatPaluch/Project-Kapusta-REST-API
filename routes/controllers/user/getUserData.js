@@ -5,14 +5,18 @@ const getUserData = async (req, res, next) => {
   try {
     const user = req.user;
 
-    const transactions = await Transaction.find({ userId: user._id }).sort({ createdAt: -1 });
+    const transactions = await Transaction.find({ userId: user._id }).sort({ date: -1 });
 
     const formattedTransactions = transactions.map(transaction => ({
       _id: transaction._id,
       description: transaction.description,
       category: transaction.category,
       amount: Math.abs(transaction.amount),
-      date: transaction.createdAt.toISOString().split('T')[0],
+      date: transaction.datetoLocaleDateString('pl-PL', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+      }),
     }));
 
     const response = {

@@ -1,8 +1,8 @@
 const post_and_get_Expense = {
-  "/transaction/expense": {
+  '/transaction/expense': {
     post: {
-      summary: "Add a new expense",
-      tags: ["Transactions"],
+      summary: 'Add a new expense',
+      tags: ['Transactions'],
       security: [
         {
           bearerAuth: [],
@@ -11,33 +11,32 @@ const post_and_get_Expense = {
       requestBody: {
         required: true,
         content: {
-          "application/json": {
+          'application/json': {
             schema: {
-              type: "object",
+              type: 'object',
               properties: {
                 amount: {
-                  type: "number",
+                  type: 'number',
                   example: 50.75,
-                  description:
-                    "The amount of the expense (should be a positive number).",
+                  description: 'The amount of the expense (should be a positive number).',
                 },
                 category: {
-                  type: "string",
-                  example: "Products",
+                  type: 'string',
+                  example: 'Products',
                   description:
-                    "The category of the expense. Valid categories include Products, Alcohol, Entertainment, Health, Transport, Housing, Technique, Communal, Communication, Sports, Hobbies, Education, and Other.",
+                    'The category of the expense. Valid categories include Products, Alcohol, Entertainment, Health, Transport, Housing, Technique, Communal, Communication, Sports, Hobbies, Education, and Other.',
                 },
                 description: {
-                  type: "string",
-                  example: "Bought groceries for the week",
-                  description: "A brief description of the expense.",
+                  type: 'string',
+                  example: 'Bought groceries for the week',
+                  description: 'A brief description of the expense.',
                 },
                 date: {
-                  type: "string",
-                  format: "date",
-                  example: "2024-10-01",
+                  type: 'string',
+                  format: 'date',
+                  example: '01.10.2024',
                   description:
-                    "The date of the expense. If not provided, the current date will be used.",
+                    'The date of the expense. If not provided, the current date will be used.',
                 },
               },
             },
@@ -46,47 +45,45 @@ const post_and_get_Expense = {
       },
       responses: {
         201: {
-          description: "Expense successfully added",
+          description: 'Expense successfully added',
           content: {
-            "application/json": {
+            'application/json': {
               schema: {
-                type: "object",
+                type: 'object',
                 properties: {
                   newBalance: {
-                    type: "number",
+                    type: 'number',
                     example: 949.25,
-                    description:
-                      "The new balance of the user after the expense has been deducted.",
+                    description: 'The new balance of the user after the expense has been deducted.',
                   },
                   transaction: {
-                    type: "object",
+                    type: 'object',
                     properties: {
                       _id: {
-                        type: "string",
-                        example: "60c72b2f5f1b2c6c7c8f1d3c",
-                        description:
-                          "The unique identifier of the expense transaction.",
+                        type: 'string',
+                        example: '60c72b2f5f1b2c6c7c8f1d3c',
+                        description: 'The unique identifier of the expense transaction.',
                       },
                       description: {
-                        type: "string",
-                        example: "Bought groceries for the week",
-                        description: "The description of the expense.",
+                        type: 'string',
+                        example: 'Bought groceries for the week',
+                        description: 'The description of the expense.',
                       },
                       amount: {
-                        type: "number",
+                        type: 'number',
                         example: 50.75,
-                        description: "The amount of the expense.",
+                        description: 'The amount of the expense.',
                       },
                       date: {
-                        type: "string",
-                        format: "date",
-                        example: "2024-10-01",
-                        description: "The date of the expense.",
+                        type: 'string',
+                        format: 'date',
+                        example: '2024-10-01',
+                        description: 'The date of the expense.',
                       },
                       category: {
-                        type: "string",
-                        example: "Products",
-                        description: "The category of the expense.",
+                        type: 'string',
+                        example: 'Products',
+                        description: 'The category of the expense.',
                       },
                     },
                   },
@@ -96,23 +93,23 @@ const post_and_get_Expense = {
           },
         },
         401: {
-          description: "Unauthorized",
+          description: 'Unauthorized',
           content: {
-            "application/json": {
+            'application/json': {
               schema: {
-                type: "object",
+                type: 'object',
                 properties: {
                   status: {
-                    type: "string",
-                    example: "Error",
+                    type: 'string',
+                    example: 'Error',
                   },
                   code: {
-                    type: "integer",
+                    type: 'integer',
                     example: 401,
                   },
                   message: {
-                    type: "string",
-                    example: "Invalid token",
+                    type: 'string',
+                    example: 'Invalid token',
                   },
                 },
               },
@@ -120,24 +117,23 @@ const post_and_get_Expense = {
           },
         },
         400: {
-          description: "Validation error for the request data",
+          description: 'Validation error for the request data',
           content: {
-            "application/json": {
+            'application/json': {
               schema: {
-                type: "object",
+                type: 'object',
                 properties: {
                   status: {
-                    type: "string",
-                    example: "Error",
+                    type: 'string',
+                    example: 'Error',
                   },
                   code: {
-                    type: "integer",
+                    type: 'integer',
                     example: 400,
                   },
                   message: {
-                    type: "string",
-                    example:
-                      "Amount is required and should be a positive number",
+                    type: 'string',
+                    example: 'Amount is required and should be a positive number',
                   },
                 },
               },
@@ -145,23 +141,23 @@ const post_and_get_Expense = {
           },
         },
         500: {
-          description: "Internal server error",
+          description: 'Internal server error',
           content: {
-            "application/json": {
+            'application/json': {
               schema: {
-                type: "object",
+                type: 'object',
                 properties: {
                   status: {
-                    type: "string",
-                    example: "Error",
+                    type: 'string',
+                    example: 'Error',
                   },
                   code: {
-                    type: "integer",
+                    type: 'integer',
                     example: 500,
                   },
                   message: {
-                    type: "string",
-                    example: "Internal server error",
+                    type: 'string',
+                    example: 'Internal server error',
                   },
                 },
               },
@@ -171,8 +167,8 @@ const post_and_get_Expense = {
       },
     },
     get: {
-      summary: "Get all expenses and stats for each month",
-      tags: ["Transactions"],
+      summary: 'Get all expenses and stats for each month',
+      tags: ['Transactions'],
       security: [
         {
           bearerAuth: [],
@@ -180,91 +176,91 @@ const post_and_get_Expense = {
       ],
       responses: {
         200: {
-          description: "Successfully retrieved all expenses",
+          description: 'Successfully retrieved all expenses',
           content: {
-            "application/json": {
+            'application/json': {
               schema: {
-                type: "object",
+                type: 'object',
                 properties: {
                   expenses: {
-                    type: "array",
+                    type: 'array',
                     items: {
-                      type: "object",
+                      type: 'object',
                       properties: {
                         _id: {
-                          type: "string",
-                          example: "60c72b2f5f1b2c6c7c8f1d3d",
+                          type: 'string',
+                          example: '60c72b2f5f1b2c6c7c8f1d3d',
                         },
                         description: {
-                          type: "string",
-                          example: "Groceries",
+                          type: 'string',
+                          example: 'Groceries',
                         },
                         amount: {
-                          type: "number",
+                          type: 'number',
                           example: 50.0,
                         },
                         date: {
-                          type: "string",
-                          format: "date",
-                          example: "2023-01-15",
+                          type: 'string',
+                          format: 'date',
+                          example: '2023-01-15',
                         },
                         category: {
-                          type: "string",
-                          example: "Products",
+                          type: 'string',
+                          example: 'Products',
                         },
                       },
                     },
                   },
                   monthStats: {
-                    type: "object",
+                    type: 'object',
                     properties: {
                       January: {
-                        type: "number",
+                        type: 'number',
                         example: 5678,
                       },
                       February: {
-                        type: "number",
+                        type: 'number',
                         example: 765,
                       },
                       March: {
-                        type: "string",
-                        example: "N/A",
+                        type: 'string',
+                        example: 'N/A',
                       },
                       April: {
-                        type: "number",
+                        type: 'number',
                         example: 354,
                       },
                       May: {
-                        type: "string",
-                        example: "N/A",
+                        type: 'string',
+                        example: 'N/A',
                       },
                       June: {
-                        type: "number",
+                        type: 'number',
                         example: 765,
                       },
                       July: {
-                        type: "number",
+                        type: 'number',
                         example: 45698,
                       },
                       August: {
-                        type: "number",
+                        type: 'number',
                         example: 89,
                       },
                       September: {
-                        type: "string",
-                        example: "N/A",
+                        type: 'string',
+                        example: 'N/A',
                       },
                       October: {
-                        type: "number",
+                        type: 'number',
                         example: 45,
                       },
                       November: {
-                        type: "string",
-                        example: "N/A",
+                        type: 'string',
+                        example: 'N/A',
                       },
                       December: {
-                        type: "string",
-                        example: "N/A",
+                        type: 'string',
+                        example: 'N/A',
                       },
                     },
                   },
@@ -274,23 +270,23 @@ const post_and_get_Expense = {
           },
         },
         401: {
-          description: "Unauthorized",
+          description: 'Unauthorized',
           content: {
-            "application/json": {
+            'application/json': {
               schema: {
-                type: "object",
+                type: 'object',
                 properties: {
                   status: {
-                    type: "string",
-                    example: "Error",
+                    type: 'string',
+                    example: 'Error',
                   },
                   code: {
-                    type: "integer",
+                    type: 'integer',
                     example: 401,
                   },
                   message: {
-                    type: "string",
-                    example: "Invalid token",
+                    type: 'string',
+                    example: 'Invalid token',
                   },
                 },
               },
@@ -298,23 +294,23 @@ const post_and_get_Expense = {
           },
         },
         404: {
-          description: "User not found",
+          description: 'User not found',
           content: {
-            "application/json": {
+            'application/json': {
               schema: {
-                type: "object",
+                type: 'object',
                 properties: {
                   status: {
-                    type: "string",
-                    example: "Error",
+                    type: 'string',
+                    example: 'Error',
                   },
                   code: {
-                    type: "integer",
+                    type: 'integer',
                     example: 404,
                   },
                   message: {
-                    type: "string",
-                    example: "User not found",
+                    type: 'string',
+                    example: 'User not found',
                   },
                 },
               },
@@ -322,23 +318,23 @@ const post_and_get_Expense = {
           },
         },
         500: {
-          description: "Internal server error",
+          description: 'Internal server error',
           content: {
-            "application/json": {
+            'application/json': {
               schema: {
-                type: "object",
+                type: 'object',
                 properties: {
                   status: {
-                    type: "string",
-                    example: "Error",
+                    type: 'string',
+                    example: 'Error',
                   },
                   code: {
-                    type: "integer",
+                    type: 'integer',
                     example: 500,
                   },
                   message: {
-                    type: "string",
-                    example: "Internal server error",
+                    type: 'string',
+                    example: 'Internal server error',
                   },
                 },
               },

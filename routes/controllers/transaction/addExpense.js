@@ -1,3 +1,5 @@
+const Transaction = require('../../../models/mongoose/transactionSchema');
+
 const addExpense = async (req, res, next) => {
   try {
     const { amount, category, description, date } = req.body;

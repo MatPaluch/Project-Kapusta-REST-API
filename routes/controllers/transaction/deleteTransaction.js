@@ -19,7 +19,7 @@ const deleteTransaction = async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    user.balance += transaction.amount;
+    user.balance += Math.abs(transaction.amount);
     await user.save();
 
     return res

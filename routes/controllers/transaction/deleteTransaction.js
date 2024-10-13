@@ -24,7 +24,7 @@ const deleteTransaction = async (req, res) => {
 
     return res
       .status(200)
-      .json({ message: 'Transaction deleted and balance updated successfully' });
+      .json({ id: id, message: 'Transaction deleted and balance updated successfully' });
   } catch (error) {
     return res.status(500).json({ message: 'Server error', error });
   }

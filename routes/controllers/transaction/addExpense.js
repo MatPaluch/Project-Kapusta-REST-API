@@ -28,6 +28,12 @@ const addExpense = async (req, res, next) => {
       });
     }
 
+    if (!date) {
+      return next({
+        status: 400,
+        message: 'Date prop is required. Please use date format dd.MM.yyyy.',
+      });
+    }
     // Rozdziel datę na dzień, miesiąc i rok
     const dateParts = date.split('.');
     if (dateParts.length !== 3) {

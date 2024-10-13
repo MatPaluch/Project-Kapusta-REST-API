@@ -202,7 +202,7 @@ const post_and_get_Expense = {
                         date: {
                           type: 'string',
                           format: 'date',
-                          example: '2023-01-15',
+                          example: '15.01.2023',
                         },
                         category: {
                           type: 'string',

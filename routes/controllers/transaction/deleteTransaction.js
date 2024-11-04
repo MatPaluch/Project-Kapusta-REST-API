@@ -18,9 +18,14 @@ const deleteTransaction = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-
-    user.balance += Math.abs(transaction.amount);
-    await user.save();
+    if (transaction.type === 'expense') {
+      user.balance += Math.abs(transaction.amount);
+      await user.save();
+    }
+    if(transaction.type === 'income') {
+      user.balance -= Math.abs(transaction.amount);
+      await user.save();
+    }
 
     return res
       .status(200)

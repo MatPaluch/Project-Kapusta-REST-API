@@ -3,7 +3,7 @@ const passportJWT = require('passport-jwt');
 const User = require('../models/mongoose/userSchema');
 
 require('dotenv').config();
-const secret = process.env.SECRET;
+const secret = process.env.JWT_SECRET;
 const tokenJwtFromRequest = passportJWT.ExtractJwt.fromAuthHeaderAsBearerToken();
 
 const options = {

@@ -42,7 +42,7 @@ const login = async (req, res, next) => {
         avatarURL: user.avatarURL,
       };
 
-      const secret = process.env.SECRET;
+      const secret = process.env.JWT_SECRET;
       const token = JWT.sign(payload, secret, { expiresIn: '2h' });
 
       user.token = token;
